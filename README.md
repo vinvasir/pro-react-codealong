@@ -1,1 +1,1 @@
-This is a codealong to Pro React's tutorial
+This is my codealong to Pro React's tutorial. The original boilerplate is [here](https://github.com/pro-react/react-app-boilerplate).
