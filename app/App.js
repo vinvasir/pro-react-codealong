@@ -18,7 +18,7 @@ let cardsList = [
 		tasks: [
 			{
 				id: 1,
-				name: "ContactLit Example",
+				name: "ContactList Example",
 				done: true
 			},
 			{
