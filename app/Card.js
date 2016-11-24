@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import CheckList from './CheckList';
+import marked from 'marked';
 
 let titlePropType = (props, propName, componentName) => {
 	if (props[propName]) {
@@ -15,10 +16,14 @@ let titlePropType = (props, propName, componentName) => {
 
 class Card extends Component {
 	constructor() {
-		super();
+		super(...arguments);
 		this.state = {
 			showDetails: false
 		};
+	}
+
+	componentDidMount() {
+		console.log(this.props.taskCallbacks);
 	}
 
 	toggleDetails() {
@@ -30,11 +35,13 @@ class Card extends Component {
 		if (this.state.showDetails) {
 			cardDetails = (
 				<div className="card__details">
-					{this.props.description}
-					<CheckList cardId={this.props.id} tasks={this.props.tasks} />
+					<span dangerouslySetInnerHTML={{__html:marked(this.props.description)}} />
+					<CheckList cardId={this.props.id}
+										 tasks={this.props.tasks}
+										 taskCallbacks={this.props.taskCallbacks} />
 				</div>
 			);
-		}
+		 }
 
 		return (
 			<div className="card">
@@ -54,7 +61,8 @@ Card.propTypes = {
 	title: titlePropType,
 	description: PropTypes.string,
 	color: PropTypes.string,
-	tasks: PropTypes.arrayOf(PropTypes.object)
+	tasks: PropTypes.arrayOf(PropTypes.object),
+	taskCallbacks: PropTypes.object
 };
 
 export default Card;

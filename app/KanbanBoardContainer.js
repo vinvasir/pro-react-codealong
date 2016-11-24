@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import KanbanBoard from './KanbanBoard';
+import update from 'react-addons-update';
 import 'whatwg-fetch';
+import 'babel-polyfill'
 
 const API_URL = 'http://kanbanapi.pro-react.com/';
 const API_HEADERS = {
@@ -27,8 +29,25 @@ class KanbanBoardContainer extends Component {
 		});
 	}
 
+	addTask(cardId, taskName) {
+
+	}
+
+	deleteTask(cardId, taskId, taskIndex) {
+
+	}
+
+	toggleTask(cardId, taskId, taskIndex) {
+
+	}
+
 	render() {
-		return <KanbanBoard cards={this.state.cards} />
+		return ( <KanbanBoard cards={this.state.cards}
+						taskCallbacks={{
+							toggle: this.toggleTask.bind(this),
+							delete: this.deleteTask.bind(this),
+							add: this.addTask.bind(this)
+						}} /> );
 	}
 }
 
